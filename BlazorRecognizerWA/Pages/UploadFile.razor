@@ -1,0 +1,84 @@
+﻿@page "/uploadFile"
+@using BlazorRecognizerWA.Models;
+@inject HttpClient Http
+@inject IModalService modal
+    
+<EditForm EditContext="editContext" OnValidSubmit="HandleValidSubmit" encType="multipart/form-data">
+    <InputFile id="pdfFile" OnChange="HandleFileChange" accept=".pdf" />
+    <button type="submit">Subir</button>
+</EditForm>
+
+
+@code {
+    private IBrowserFile file;
+    private EditContext editContext;
+    private Invoice invoice = new Invoice();
+    private Receipt receipt = new Receipt();
+    private ResponseRecognizer responseRecognizer = new ResponseRecognizer();
+
+    public string UrlUploadPdf = "/invoice";
+
+    protected override void OnInitialized()
+    {
+        editContext = new EditContext(new object());
+    }
+
+    private async Task HandleFileChange(InputFileChangeEventArgs e)
+    {
+        file = e.File;
+        editContext.NotifyFieldChanged(FieldIdentifier.Create(() => file));
+    }
+
+    private async Task HandleValidSubmit()
+    {
+        if (file != null)
+        {
+            // Crear un MemoryStream para leer el archivo
+            using (var memoryStream = new MemoryStream())
+            {
+                await file.OpenReadStream().CopyToAsync(memoryStream);
+
+                // Convertir el contenido del MemoryStream a bytes
+                var buffer = memoryStream.ToArray();
+
+                // Convertir el contenido del archivo a Base64
+                string base64Content = Convert.ToBase64String(buffer);
+
+                // Crear el objeto de solicitud con el contenido Base64
+                var request = new PdfRequest
+                    {
+                        Base64 = base64Content,
+                        Type = file.Name.Contains("invoice")?"FACTURA":"RECIBO"
+                    };
+
+                // Enviar la solicitud al servidor
+                var res = await Http.PostAsJsonAsync(UrlUploadPdf, request);
+                
+                // Leer y procesar la respuesta
+                if (res.IsSuccessStatusCode)
+                {
+                    responseRecognizer = await res.Content.ReadFromJsonAsync<ResponseRecognizer>();
+                    if (responseRecognizer.Type=="FACTURA")
+                    {
+                        var parameters = new ModalParameters()
+                        .Add(nameof(Invoice), responseRecognizer.Invoice );
+                        modal.Show<Information>("Factura", parameters);
+                    }
+                    else
+                    {
+                        var parameters = new ModalParameters()
+                        .Add(nameof(Receipt), responseRecognizer.Receipt);
+                        modal.Show<ReceiptInformation>("Recibo", parameters);
+                    }
+                  
+                }
+                else
+                {
+                    // Manejar el error si la solicitud no fue exitosa
+                    Console.WriteLine($"Error al enviar el archivo PDF al servidor: {res.StatusCode}");
+                }
+            }
+        }
+    }
+
+}

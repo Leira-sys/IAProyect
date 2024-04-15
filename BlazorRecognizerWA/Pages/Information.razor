@@ -1,0 +1,48 @@
+﻿@using BlazorRecognizerWA.Models;
+@using System.Text.Json;
+
+        <h4>Detalles de la factura</h4>
+        <p><strong>Cliente:</strong> @invoice.CustomerData.Name</p>
+        <p><strong>Dirección del cliente:</strong> @invoice.CustomerData.Address</p>
+        <p><strong>Número de factura:</strong> @invoice.InvoiceNumber</p>
+        <h5>Productos:</h5>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Nombre</th>
+                    <th>Cantidad</th>
+                    <th>Precio</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var product in invoice.Products)
+                {
+                    <tr>
+                        <td>@product.Name</td>
+                        <td>@product.Quantity</td>
+                        <td>@product.Price</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+
+        <p><strong>Total:</strong> @invoice.Total</p>
+
+
+@code {
+
+    [CascadingParameter] BlazoredModalInstance BlazoredModal { get; set; } = default!;
+    [Parameter] public Invoice Invoice { get; set; }
+    private Invoice invoice = new Invoice();
+
+    protected override async Task OnInitializedAsync()
+    {
+        invoice = Invoice;
+        //var json = "{\"Id\":\"INV-100\",\"CustomerData\":{\"Name\":\"MICROSOFT CORPORATION\",\"Address\":\"123 Other St\"},\"VendorData\":{\"Name\":\"CONTOSO LTD.\",\"Address\":\"123 456th St\"},\"InvoiceNumber\":\"\",\"Products\":[{\"Quantity\":2,\"Price\":30,\"Name\":\"Consulting Services\"},{\"Quantity\":3,\"Price\":10,\"Name\":\"Document Fee\"},{\"Quantity\":10,\"Price\":1,\"Name\":\"Printing Fee\"}],\"Total\":110}";
+        //invoice = JsonSerializer.Deserialize<Invoice>(json); 
+
+    }
+
+
+
+}

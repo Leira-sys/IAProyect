@@ -1,0 +1,26 @@
+﻿@page "/"
+
+<PageTitle>Index</PageTitle>
+
+@inject IJSRuntime JS
+
+<h1>File Download Example 2</h1>
+
+<button @onclick="DownloadFileFromURL">
+    Download File From URL
+</button>
+
+
+<h1>Hello, world!</h1>
+
+Welcome to your new app.
+
+<SurveyPrompt Title="How is Blazor working for you?" />
+@code {
+    private async Task DownloadFileFromURL()
+    {
+        var nombre = "NombreArchivo.txt";
+        var fileURL = "https://localhost:7125/dad.txt";
+        await JS.InvokeVoidAsync("Descargar", nombre, fileURL);
+    }
+}

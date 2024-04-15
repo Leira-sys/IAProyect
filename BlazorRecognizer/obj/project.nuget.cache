@@ -1,0 +1,25 @@
+{
+  "version": 2,
+  "dgSpecHash": "rGMJNA1N1noGnHJf7n/iNv+rpM49pmVW4K4YpuoDvCl+CfACSfiBnKgnEQ0ZMKD0uMIUmdXhx7KVdSLu+eVjmg==",
+  "success": true,
+  "projectFilePath": "C:\\Users\\eespinoza\\source\\repos\\ConsoleApp3\\BlazorRecognizer\\BlazorRecognizer.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\eespinoza\\.nuget\\packages\\blazored.modal\\7.2.0\\blazored.modal.7.2.0.nupkg.sha512",
+    "C:\\Users\\eespinoza\\.nuget\\packages\\microsoft.aspnetcore.authorization\\6.0.25\\microsoft.aspnetcore.authorization.6.0.25.nupkg.sha512",
+    "C:\\Users\\eespinoza\\.nuget\\packages\\microsoft.aspnetcore.components\\6.0.25\\microsoft.aspnetcore.components.6.0.25.nupkg.sha512",
+    "C:\\Users\\eespinoza\\.nuget\\packages\\microsoft.aspnetcore.components.analyzers\\6.0.25\\microsoft.aspnetcore.components.analyzers.6.0.25.nupkg.sha512",
+    "C:\\Users\\eespinoza\\.nuget\\packages\\microsoft.aspnetcore.components.forms\\6.0.3\\microsoft.aspnetcore.components.forms.6.0.3.nupkg.sha512",
+    "C:\\Users\\eespinoza\\.nuget\\packages\\microsoft.aspnetcore.components.web\\6.0.3\\microsoft.aspnetcore.components.web.6.0.3.nupkg.sha512",
+    "C:\\Users\\eespinoza\\.nuget\\packages\\microsoft.aspnetcore.metadata\\6.0.25\\microsoft.aspnetcore.metadata.6.0.25.nupkg.sha512",
+    "C:\\Users\\eespinoza\\.nuget\\packages\\microsoft.extensions.dependencyinjection\\6.0.0\\microsoft.extensions.dependencyinjection.6.0.0.nupkg.sha512",
+    "C:\\Users\\eespinoza\\.nuget\\packages\\microsoft.extensions.dependencyinjection.abstractions\\6.0.0\\microsoft.extensions.dependencyinjection.abstractions.6.0.0.nupkg.sha512",
+    "C:\\Users\\eespinoza\\.nuget\\packages\\microsoft.extensions.logging.abstractions\\6.0.4\\microsoft.extensions.logging.abstractions.6.0.4.nupkg.sha512",
+    "C:\\Users\\eespinoza\\.nuget\\packages\\microsoft.extensions.options\\6.0.0\\microsoft.extensions.options.6.0.0.nupkg.sha512",
+    "C:\\Users\\eespinoza\\.nuget\\packages\\microsoft.extensions.primitives\\6.0.0\\microsoft.extensions.primitives.6.0.0.nupkg.sha512",
+    "C:\\Users\\eespinoza\\.nuget\\packages\\microsoft.jsinterop\\6.0.3\\microsoft.jsinterop.6.0.3.nupkg.sha512",
+    "C:\\Users\\eespinoza\\.nuget\\packages\\microsoft.jsinterop.webassembly\\6.0.3\\microsoft.jsinterop.webassembly.6.0.3.nupkg.sha512",
+    "C:\\Users\\eespinoza\\.nuget\\packages\\system.io.pipelines\\6.0.2\\system.io.pipelines.6.0.2.nupkg.sha512",
+    "C:\\Users\\eespinoza\\.nuget\\packages\\system.runtime.compilerservices.unsafe\\6.0.0\\system.runtime.compilerservices.unsafe.6.0.0.nupkg.sha512"
+  ],
+  "logs": []
+}

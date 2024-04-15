@@ -1,0 +1,15 @@
+﻿using System;
+using System.Collections.Generic;
+
+namespace BlazorRecognizerWA.Models
+{
+    public  class LogAzure
+    {
+        public int Id { get; set; }
+        public string? Tipo { get; set; }
+        public string? Descripcion { get; set; }
+        public DateTime? FechaHora { get; set; }
+        public string? Base64 { get; set; }
+        public bool? Estado { get; set; }
+    }
+}

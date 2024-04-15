@@ -1,0 +1,18 @@
+﻿@using BlazorRecognizerWA.Models;
+<h4>Detalles del Recibo</h4>
+
+<p><strong>Número del recibo:</strong> @receipt.ReceiptNumber</p>
+<p><strong>Nombre del comerciante:</strong>@receipt.MerchantName </p>
+<p><strong>Fecha de la transacción:</strong> @receipt.TransactionDate</p>
+<p><strong>Dirección del comerciante:</strong> @receipt.MerchantAddress</p>
+@code {
+    [CascadingParameter] BlazoredModalInstance BlazoredModal { get; set; } = default!;
+    [Parameter] public Receipt Receipt { get; set; }
+    private Receipt receipt = new Receipt();
+    protected override async Task OnInitializedAsync()
+    {
+        receipt = Receipt;
+
+    }
+
+}

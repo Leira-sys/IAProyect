@@ -1,0 +1,83 @@
+﻿@page "/load"
+@using BlazorRecognizerWA.Models;
+@using System.Text;
+@inject IJSRuntime JSRuntime
+
+<table class="table">
+    <tr>
+        <th>ID</th>
+        <th>TIPO</th>
+        <th>DESCRIPCION</th>
+        <th>FECHA</th>
+    </tr>
+    @foreach (var item in logs)
+    {
+        <tr>
+            <td>@item.Id</td>
+            <td>@item.Tipo</td>
+            <td>@item.Descripcion</td>
+            <td>@item.FechaHora</td>
+        </tr>
+    }
+</table>
+
+<button @onclick="Descargar" class="btn btn-primary"> Descargar en excel</button>
+
+@code {
+    public List<LogAzure> logs = new List<LogAzure>();
+    protected override async Task OnInitializedAsync()
+    {
+        LogAzure logAzure = new()
+            {
+
+                Id = 1,
+                Descripcion = "Carga 1",
+                Estado = true,
+                FechaHora = DateTime.Now,
+                Tipo = "FACTURA"
+            };
+        LogAzure logAzure2 = new()
+            {
+
+                Id = 2,
+                Descripcion = "Carga 2",
+                Estado = true,
+                FechaHora = DateTime.Now,
+                Tipo = "FACTURA"
+            };
+        LogAzure logAzure3 = new()
+            {
+
+                Id = 3,
+                Descripcion = "Carga 3",
+                Estado = true,
+                FechaHora = DateTime.Now,
+                Tipo = "FACTURA"
+            };
+        logs.Add(logAzure);
+        logs.Add(logAzure2);
+        logs.Add(logAzure3);
+    }
+    private async Task Descargar()
+    {
+        try
+        {
+            Controllers.ExcelController excelController = new Controllers.ExcelController();
+
+            var result = await excelController.ExportarLogsAExcel(logs);
+
+            var content = await result.Content.ReadAsByteArrayAsync();
+            var contentType = "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet";
+            var fileName = $"Logs_{DateTime.Now:yyyy-MM-dd}.xlsx";
+
+            var base64 = Convert.ToBase64String(content);
+            await JSRuntime.InvokeVoidAsync("downloadFile", base64, fileName, contentType);
+        }
+        catch (Exception ex)
+        {
+            
+            throw;
+        }
+        
+    }
+}
